@@ -1,0 +1,25 @@
+.wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.question-list {
+  li {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: 6px;
+  }
+
+  p {
+    font-weight: 500;
+    margin: 0 10px;
+  }
+}
+
+.check {
+  background-color: var(--click);
+}

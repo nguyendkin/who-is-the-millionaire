@@ -1,0 +1,12 @@
+.wrapper {
+  display: flex;
+  height: 100vh;
+}
+
+.main {
+  flex-grow: 3;
+}
+
+.question-tree {
+  flex-grow: 1;
+}
