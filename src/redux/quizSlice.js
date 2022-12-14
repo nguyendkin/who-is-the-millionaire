@@ -3,6 +3,12 @@ import { createSlice } from "@reduxjs/toolkit";
 const quizSlice = createSlice({
   name: "quiz",
   initialState: {
+    questionNumber: 1,
+
+    lockTimer: false,
+
+    lossGame: false,
+
     data: [
       {
         id: 1,
@@ -399,60 +405,83 @@ const quizSlice = createSlice({
     questionTree: [
       {
         id: 1,
-        money: "100 $",
+        money: "100",
       },
       {
         id: 2,
-        money: "200 $",
+        money: "200",
       },
       {
         id: 3,
-        money: "300 $",
+        money: "300",
       },
       {
         id: 4,
-        money: "500 $",
+        money: "500",
+      },
+      {
+        id: 5,
+        money: "600",
       },
       {
         id: 6,
-        money: "600 $",
+        money: "600",
       },
       {
         id: 7,
-        money: "800 $",
+        money: "700",
+      },
+      {
+        id: 8,
+        money: "800",
       },
       {
         id: 9,
-        money: "900 $",
+        money: "900",
       },
       {
         id: 10,
-        money: "10.000 $",
+        money: "10.000",
       },
       {
         id: 11,
-        money: "11.000 $",
+        money: "11.000",
       },
       {
         id: 12,
-        money: "12.000 $",
+        money: "12.000",
       },
       {
         id: 13,
-        money: "13.000 $",
+        money: "13.000",
       },
       {
         id: 14,
-        money: "14.000 $",
+        money: "14.000",
       },
       {
         id: 15,
-        money: "15.000 $",
+        money: "15.000",
       },
     ].reverse(),
   },
 
-  reducers: {},
+  reducers: {
+    setQuestionNumber: (state, action) => {
+      state.questionNumber = state.questionNumber + 1;
+    },
+
+    setLossGame: (state, action) => {
+      state.lossGame = action.payload;
+    },
+
+    setLockTimer: (state, action) => {
+      state.lockTimer = action.payload;
+    },
+  },
 });
+
+export const { setQuestionNumber, setLossGame, setLockTimer } =
+  quizSlice.actions;
 
 export default quizSlice.reducer;
