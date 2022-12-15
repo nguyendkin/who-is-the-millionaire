@@ -26,8 +26,7 @@ function Timer() {
       setTimer((pre) => pre - 1);
     }, 1000);
     idRef.current = desTimerRef;
-
-    return () => clearTimeout(desTimer);
+    return () => clearTimeout(desTimerRef);
     // eslint-disable-next-line
   }, [timer]);
 

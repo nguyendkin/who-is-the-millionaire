@@ -25,6 +25,8 @@ function Main() {
   const [winGame, setWinGame] = useState(false);
   const [moneyGame, setMoneyGame] = useState(0);
   const [lockActiveAnswer, setLockActiveAnswer] = useState(false);
+  const [checkRandomData, setCheckRandomData] = useState([]);
+  const [test, setTest] = useState("");
 
   const handleClickAnswer = (answer) => {
     // LOCK ACTIVE ANSWER MOUSE
@@ -45,8 +47,8 @@ function Main() {
               setWinGame(true);
             } else {
               dispatch(setQuestionNumber());
-              setClasses("animation");
             }
+            setClasses("animation");
             setLockActiveAnswer(false);
           }, 1500);
         } else {
@@ -87,8 +89,32 @@ function Main() {
 
   // GET DATA
   useEffect(() => {
-    const randomArray = Math.floor(Math.random() * data.length);
-    setStateData(data[randomArray]);
+    let stop = 0;
+    const randomNum = () => {
+      let numRandom = Math.floor(Math.random() * data.length);
+
+      console.log(checkRandomData, data[numRandom].id);
+
+      if (!checkRandomData.includes(data[numRandom].id)) {
+        if (checkRandomData.length === 0) {
+          setCheckRandomData([data[numRandom].id]);
+          return setStateData(data[numRandom]);
+        } else {
+          setCheckRandomData((pre) => [...pre, data[numRandom].id]);
+          return setStateData(data[numRandom]);
+        }
+      } else {
+        if (data.length + 1 > stop) {
+          stop++;
+          randomNum();
+          console.log("PASS");
+        }
+        return;
+      }
+    };
+    // 3 13 4 11 13 15 (15) 6
+    randomNum();
+
     // eslint-disable-next-line
   }, [questionNumber]);
 
@@ -132,3 +158,7 @@ function Main() {
 }
 
 export default Main;
+
+// Dừng tại 6
+// Do click dung nen ben kia tang len 1/ Log ban ra 3
+//
