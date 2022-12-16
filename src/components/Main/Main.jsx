@@ -6,6 +6,8 @@ import {
   setQuestionNumber,
   setLossGame,
   setLockTimer,
+  setStateData,
+  setShowQuestion,
 } from "../../redux/quizSlice";
 import Timer from "../Timer/Timer";
 
@@ -16,23 +18,24 @@ function Main() {
   const questionNumber = useSelector((state) => state.quiz.questionNumber);
   const questionTree = useSelector((state) => state.quiz.questionTree);
   const lossGame = useSelector((state) => state.quiz.lossGame);
+  const stateData = useSelector((state) => state.quiz.stateData);
+  const showQuestion = useSelector((state) => state.quiz.showQuestion);
 
   const dispatch = useDispatch();
 
-  const [stateData, setStateData] = useState("");
   const [stateActive, setStateActive] = useState("");
   const [classes, setClasses] = useState("animation");
   const [winGame, setWinGame] = useState(false);
   const [moneyGame, setMoneyGame] = useState(0);
   const [lockActiveAnswer, setLockActiveAnswer] = useState(false);
   const [checkRandomData, setCheckRandomData] = useState([]);
-  const [test, setTest] = useState("");
 
   const handleClickAnswer = (answer) => {
     // LOCK ACTIVE ANSWER MOUSE
     if (lockActiveAnswer) {
       return;
     }
+    dispatch(setShowQuestion(false));
     setLockActiveAnswer(true);
     setStateActive(answer);
     dispatch(setLockTimer(true));
@@ -98,10 +101,10 @@ function Main() {
       if (!checkRandomData.includes(data[numRandom].id)) {
         if (checkRandomData.length === 0) {
           setCheckRandomData([data[numRandom].id]);
-          return setStateData(data[numRandom]);
+          return dispatch(setStateData(data[numRandom]));
         } else {
           setCheckRandomData((pre) => [...pre, data[numRandom].id]);
-          return setStateData(data[numRandom]);
+          return dispatch(setStateData(data[numRandom]));
         }
       } else {
         if (data.length + 1 > stop) {
@@ -145,6 +148,13 @@ function Main() {
                   className={stateActive === answer ? cx(classes) : {}}
                   key={answer.id}
                   onClick={() => handleClickAnswer(answer)}
+                  style={
+                    showQuestion && answer.correct
+                      ? { border: "1px solid green" }
+                      : showQuestion && answer.suggestions
+                      ? { border: "1px solid green" }
+                      : {}
+                  }
                 >
                   {answer.text}
                 </li>
@@ -158,7 +168,3 @@ function Main() {
 }
 
 export default Main;
-
-// Dừng tại 6
-// Do click dung nen ben kia tang len 1/ Log ban ra 3
-//

@@ -5,9 +5,13 @@ const quizSlice = createSlice({
   initialState: {
     questionNumber: 1,
 
+    stateData: "",
+
     lockTimer: false,
 
     lossGame: false,
+
+    showQuestion: false,
 
     data: [
       {
@@ -27,6 +31,7 @@ const quizSlice = createSlice({
           {
             text: "Yellow",
             correct: false,
+            suggestions: true,
             id: 3,
           },
           {
@@ -53,6 +58,7 @@ const quizSlice = createSlice({
           {
             text: "Yellow",
             correct: false,
+            suggestions: true,
             id: 3,
           },
           {
@@ -79,6 +85,7 @@ const quizSlice = createSlice({
           {
             text: "Yellow",
             correct: false,
+            suggestions: true,
             id: 3,
           },
           {
@@ -105,6 +112,7 @@ const quizSlice = createSlice({
           {
             text: "Yellow",
             correct: false,
+            suggestions: true,
             id: 3,
           },
           {
@@ -131,6 +139,7 @@ const quizSlice = createSlice({
           {
             text: "Yellow",
             correct: false,
+            suggestions: true,
             id: 3,
           },
           {
@@ -157,6 +166,7 @@ const quizSlice = createSlice({
           {
             text: "Yellow",
             correct: false,
+            suggestions: true,
             id: 3,
           },
           {
@@ -183,6 +193,7 @@ const quizSlice = createSlice({
           {
             text: "Yellow",
             correct: false,
+            suggestions: true,
             id: 3,
           },
           {
@@ -209,6 +220,7 @@ const quizSlice = createSlice({
           {
             text: "Yellow",
             correct: false,
+            suggestions: true,
             id: 3,
           },
           {
@@ -235,6 +247,7 @@ const quizSlice = createSlice({
           {
             text: "Yellow",
             correct: false,
+            suggestions: true,
             id: 3,
           },
           {
@@ -261,6 +274,7 @@ const quizSlice = createSlice({
           {
             text: "Yellow",
             correct: false,
+            suggestions: true,
             id: 3,
           },
           {
@@ -287,6 +301,7 @@ const quizSlice = createSlice({
           {
             text: "Yellow",
             correct: false,
+            suggestions: true,
             id: 3,
           },
           {
@@ -313,6 +328,7 @@ const quizSlice = createSlice({
           {
             text: "Yellow",
             correct: false,
+            suggestions: true,
             id: 3,
           },
           {
@@ -339,6 +355,7 @@ const quizSlice = createSlice({
           {
             text: "Yellow",
             correct: false,
+            suggestions: true,
             id: 3,
           },
           {
@@ -365,6 +382,7 @@ const quizSlice = createSlice({
           {
             text: "Yellow",
             correct: false,
+            suggestions: true,
             id: 3,
           },
           {
@@ -391,6 +409,7 @@ const quizSlice = createSlice({
           {
             text: "Yellow",
             correct: false,
+            suggestions: true,
             id: 3,
           },
           {
@@ -478,10 +497,23 @@ const quizSlice = createSlice({
     setLockTimer: (state, action) => {
       state.lockTimer = action.payload;
     },
+
+    setStateData: (state, action) => {
+      state.stateData = action.payload;
+    },
+
+    setShowQuestion: (state, action) => {
+      state.showQuestion = action.payload;
+    },
   },
 });
 
-export const { setQuestionNumber, setLossGame, setLockTimer } =
-  quizSlice.actions;
+export const {
+  setQuestionNumber,
+  setLossGame,
+  setLockTimer,
+  setStateData,
+  setShowQuestion,
+} = quizSlice.actions;
 
 export default quizSlice.reducer;

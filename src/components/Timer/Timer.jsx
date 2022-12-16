@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setLossGame } from "../../redux/quizSlice";
+import { setLockTimer, setLossGame } from "../../redux/quizSlice";
 
 function Timer() {
   const questionNumber = useSelector((state) => state.quiz.questionNumber);
@@ -26,12 +26,14 @@ function Timer() {
       setTimer((pre) => pre - 1);
     }, 1000);
     idRef.current = desTimerRef;
+    dispatch(setLockTimer(false));
     return () => clearTimeout(desTimerRef);
     // eslint-disable-next-line
-  }, [timer]);
+  }, [timer, questionNumber]);
 
   useEffect(() => {
     setTimer(30);
+    // eslint-disable-next-line
   }, [questionNumber]);
 
   return timer;
